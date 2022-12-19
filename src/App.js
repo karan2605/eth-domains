@@ -16,7 +16,7 @@ function App() {
   const [provider, setProvider] = useState(null)
   const [account, setAccount] = useState(null)
 
-  const [ETHDomains, setETHDomains] = useState(null)
+  const [ethDomains, setethDomains] = useState(null)
   const [domains, setDomains] = useState([])
 
   const loadBlockchainData = async () => {
@@ -25,7 +25,7 @@ function App() {
 
     const network = await provider.getNetwork()
     const ethDomains = new ethers.Contract(config[network.chainId].ETHDomains.address, ETHDomains, provider)
-    setETHDomains(ethDomains)
+    setethDomains(ethDomains)
 
     const maxSupply = await ethDomains.maxSupply()
     const domains = []
