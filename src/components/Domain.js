@@ -30,16 +30,16 @@ const Domain = ({ domain, ethDomains, provider, id }) => {
 
   return (
     <Card>
-      <div>
-        <h3>
+      <div className="flex flex-col gap-4">
+        <h3 className="text-2xl">
           {domain.isOwned || owner ? (
-            <del>{domain.name}</del>
+            <del className="text-red-600">{domain.name}</del>
           ) : (
-            <>{domain.name}</>
+            <p className="text-green-500">{domain.name}</p>
           )}
         </h3>
 
-        <p>
+        <p className="text-xl">
           {domain.isOwned || owner ? (
             <>
               
@@ -68,7 +68,7 @@ const Domain = ({ domain, ethDomains, provider, id }) => {
       </div>
 
       {!domain.isOwned && !owner && (
-        <Button onClick={() => buyHandler()}>Buy It</Button>
+        <Button size="lg" className="text-lg" onClick={() => buyHandler()}>Buy It</Button>
       )}
     </Card>
   );
