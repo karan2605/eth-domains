@@ -1,31 +1,32 @@
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
 
-import { Card } from 'flowbite-react'
-import { Button } from "flowbite-react/lib/cjs/components/Button"
+import { Card, Button, Badge } from "flowbite-react";
 
 const Domain = ({ domain, ethDomains, provider, id }) => {
-  const [owner, setOwner] = useState(null)
-  const [hasSold, setHasSold] = useState(false)
+  const [owner, setOwner] = useState(null);
+  const [hasSold, setHasSold] = useState(false);
 
   const getOwner = async () => {
     if (domain.isOwned || hasSold) {
-      const owner = await ethDomains.ownerOf(id)
-      setOwner(owner)
+      const owner = await ethDomains.ownerOf(id);
+      setOwner(owner);
     }
-  }
+  };
 
   const buyHandler = async () => {
-    const signer = await provider.getSigner()
-    const transaction = await ethDomains.connect(signer).mint(id, { value: domain.cost })
-    await transaction.wait()
+    const signer = await provider.getSigner();
+    const transaction = await ethDomains
+      .connect(signer)
+      .mint(id, { value: domain.cost });
+    await transaction.wait();
 
-    setHasSold(true)
-  }
+    setHasSold(true);
+  };
 
   useEffect(() => {
-    getOwner()
-  }, [hasSold])
+    getOwner();
+  }, [hasSold]);
 
   return (
     <Card>
@@ -41,17 +42,24 @@ const Domain = ({ domain, ethDomains, provider, id }) => {
         <p>
           {domain.isOwned || owner ? (
             <>
-              <small>
-                Owned by:<br />
-                <span>
-                  {owner && owner.slice(0, 6) + '...' + owner.slice(38, 42)}
-                </span>
-              </small>
+              
+                Owned by:
+                <br />
+                <Badge
+                  color="dark"
+                  className={
+                    "text-white font-mono text-lg bg-gradient-to-r from-blue-600 to-fuchsia-600 "
+                  }
+                  size="lg"
+                >
+                  {owner}
+                </Badge>
+              
             </>
           ) : (
             <>
               <strong>
-                {ethers.utils.formatUnits(domain.cost.toString(), 'ether')}
+                {ethers.utils.formatUnits(domain.cost.toString(), "ether")}
               </strong>
               ETH
             </>
@@ -60,14 +68,10 @@ const Domain = ({ domain, ethDomains, provider, id }) => {
       </div>
 
       {!domain.isOwned && !owner && (
-        <Button
-          onClick={() => buyHandler()}
-        >
-          Buy It
-        </Button>
+        <Button onClick={() => buyHandler()}>Buy It</Button>
       )}
     </Card>
   );
-}
+};
 
 export default Domain;
