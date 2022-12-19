@@ -1,4 +1,4 @@
-# ETH Daddy 
+# ETH-Domains 
 
 ## Technology Stack & Tools
 
