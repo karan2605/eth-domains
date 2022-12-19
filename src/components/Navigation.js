@@ -1,45 +1,46 @@
-import { ethers } from 'ethers';
-import logo from '../assets/logo.svg';
+import { ethers } from "ethers";
+import logo from "../assets/logo.svg";
+
+import { Navbar, Button } from "flowbite-react";
 
 const Navigation = ({ account, setAccount }) => {
   const connectHandler = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const account = ethers.utils.getAddress(accounts[0])
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const account = ethers.utils.getAddress(accounts[0]);
     setAccount(account);
-  }
+  };
 
   return (
-    <nav>
-      <div className='nav__brand'>
+    <Navbar fluid={true} rounded={true}>
+      <Navbar.Brand className="flex gap-4">
         <img src={logo} alt="Logo" />
-        <h1>ETH Domains</h1>
-
-        <ul className='nav__links'>
-          <li><a href="/">Domain Names</a></li>
-          <li><a href="/">Websites & Hosting</a></li>
-          <li><a href="/">Commerce</a></li>
-          <li><a href="/">Email & Marketing</a></li>
-        </ul>
+        <h1 className="text-3xl">ETH Domains</h1>
+      </Navbar.Brand>
+      <Navbar.Collapse>
+        <Navbar.Link href="/">Domain Names</Navbar.Link>
+        <Navbar.Link href="/">Websites & Hosting</Navbar.Link>
+        <Navbar.Link href="/">Commerce</Navbar.Link>
+        <Navbar.Link href="/">Email & Marketing</Navbar.Link>
+      </Navbar.Collapse>
+      <div className="flex md:order-2">
+        {account ? (
+          <Button gradientDuoTone="purpleToBlue" size={"lg"}>
+            {account.slice(0, 6) + "..." + account.slice(38, 42)}
+          </Button>
+        ) : (
+          <Button
+            onClick={connectHandler}
+            gradientDuoTone="purpleToBlue"
+            size={"lg"}
+          >
+            Connect
+          </Button>
+        )}
       </div>
-
-      {account ? (
-        <button
-          type="button"
-          className='nav__connect'
-        >
-          {account.slice(0, 6) + '...' + account.slice(38, 42)}
-        </button>
-      ) : (
-        <button
-          type="button"
-          className='nav__connect'
-          onClick={connectHandler}
-        >
-          Connect
-        </button>
-      )}
-    </nav>
+    </Navbar>
   );
-}
+};
 
 export default Navigation;

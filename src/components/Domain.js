@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 
+import { Card } from 'flowbite-react'
+import { Button } from "flowbite-react/lib/cjs/components/Button"
+
 const Domain = ({ domain, ethDomains, provider, id }) => {
   const [owner, setOwner] = useState(null)
   const [hasSold, setHasSold] = useState(false)
@@ -25,8 +28,8 @@ const Domain = ({ domain, ethDomains, provider, id }) => {
   }, [hasSold])
 
   return (
-    <div className='card'>
-      <div className='card__info'>
+    <Card>
+      <div>
         <h3>
           {domain.isOwned || owner ? (
             <del>{domain.name}</del>
@@ -57,15 +60,13 @@ const Domain = ({ domain, ethDomains, provider, id }) => {
       </div>
 
       {!domain.isOwned && !owner && (
-        <button
-          type="button"
-          className='card__button'
+        <Button
           onClick={() => buyHandler()}
         >
           Buy It
-        </button>
+        </Button>
       )}
-    </div>
+    </Card>
   );
 }
 

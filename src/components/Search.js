@@ -1,23 +1,23 @@
+import { Button, TextInput } from "flowbite-react";
+
 const Search = () => {
   return (
-    <header>
-      <p className="header__subtitle">Seek and buy available domain names</p>
-      <h2 className="header__title">It all begins with a domain name.</h2>
-      <div className="header__search">
-        <input
-          type="text"
-          className="header__input"
-          placeholder="Find your domain"
-        />
-        <button
-          type="button"
-          className='header__button'
+    <div class="w-full h-96 bg-gradient-to-r from-blue-600 to-fuchsia-600">
+      <div class="flex flex-col items-center justify-center h-full gap-3">
+        <h1 class="text-white text-6xl font-semibold p-6">
+          Seek and buy available domain names
+        </h1>
+        <TextInput type="text" placeholder="Find your domain" size={"lg"}/>
+        <Button
+          gradientDuoTone="purpleToPink"
+          size="xl"
+          className="font-semibold text-4xl"
         >
-          Buy It
-        </button>
+          <span className="text-3xl">Buy It</span>
+        </Button>
       </div>
-    </header>
+    </div>
   );
-}
+};
 
 export default Search;
