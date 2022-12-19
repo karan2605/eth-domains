@@ -58,9 +58,9 @@ function App() {
     <div className="flex flex-col">
       <Navigation account={account} setAccount={setAccount} />
 
-      <div className="flex flex-col justify-center items-center gap-4">
+      <div className="flex flex-col justify-center items-center gap-6">
         <Search />
-        <h2 className="text-5xl">Why you need a domain name.</h2>
+        <h2 className="text-5xl font-semibold">Why you need a domain name.</h2>
         <p className="text-3xl">
           Own your custom username, use it across services, and be able to store
           an avatar and other profile data.
@@ -68,7 +68,7 @@ function App() {
 
         <hr />
 
-        <div className="flex-col w-1/3 gap-4">
+        <div className="flex flex-col w-1/3 gap-4">
           {domains.map((domain, index) => (
             <Domain
               domain={domain}
