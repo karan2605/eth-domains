@@ -7,7 +7,7 @@ const Search = () => {
         <h1 class="text-white text-6xl font-semibold p-6">
           Seek and buy available domain names
         </h1>
-        <TextInput type="text" placeholder="Find your domain" size={"lg"}/>
+        <TextInput type="text" placeholder="Find your domain" sizing={"lg"} className="w-1/3"/>
         <Button
           gradientDuoTone="purpleToPink"
           size="xl"
