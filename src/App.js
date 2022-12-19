@@ -72,7 +72,7 @@ function App() {
           {domains.map((domain, index) => (
             <Domain
               domain={domain}
-              ethDomains={ETHDomains}
+              ethDomains={ethDomains}
               provider={provider}
               id={index + 1}
               key={index}
