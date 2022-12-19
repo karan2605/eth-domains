@@ -7,7 +7,7 @@ import Search from './components/Search'
 import Domain from './components/Domain'
 
 // ABIs
-import ETHDaddy from './abis/ETHDaddy.json'
+import ETHDomains from './abis/ETHDomains.json'
 
 // Config
 import config from './config.json';
@@ -16,7 +16,7 @@ function App() {
   const [provider, setProvider] = useState(null)
   const [account, setAccount] = useState(null)
 
-  const [ethDaddy, setETHDaddy] = useState(null)
+  const [ETHDomains, setETHDomains] = useState(null)
   const [domains, setDomains] = useState([])
 
   const loadBlockchainData = async () => {
@@ -24,14 +24,14 @@ function App() {
     setProvider(provider)
 
     const network = await provider.getNetwork()
-    const ethDaddy = new ethers.Contract(config[network.chainId].ETHDaddy.address, ETHDaddy, provider)
-    setETHDaddy(ethDaddy)
+    const ethDomains = new ethers.Contract(config[network.chainId].ETHDomains.address, ETHDomains, provider)
+    setETHDomains(ethDomains)
 
-    const maxSupply = await ethDaddy.maxSupply()
+    const maxSupply = await ethDomains.maxSupply()
     const domains = []
 
     for (var i = 1; i <= maxSupply; i++) {
-      const domain = await ethDaddy.getDomain(i)
+      const domain = await ethDomains.getDomain(i)
       domains.push(domain)
     }
 
@@ -65,7 +65,7 @@ function App() {
 
         <div className='cards'>
           {domains.map((domain, index) => (
-            <Domain domain={domain} ethDaddy={ethDaddy} provider={provider} id={index + 1} key={index} />
+            <Domain domain={domain} ethDomains={ETHDomains} provider={provider} id={index + 1} key={index} />
           ))}
         </div>
       </div>
