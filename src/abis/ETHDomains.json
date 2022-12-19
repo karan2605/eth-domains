@@ -187,7 +187,7 @@
                         "type": "bool"
                     }
                 ],
-                "internalType": "struct ETHDaddy.Domain",
+                "internalType": "struct ETHDomains.Domain",
                 "name": "",
                 "type": "tuple"
             }
